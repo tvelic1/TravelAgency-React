@@ -1,28 +1,39 @@
-.prikaz{
-    list-style-type: none;
-    padding: 0;
+.prikaz {
+    width: 100%;
+    border-collapse: collapse;
   }
   
-  .zakpri {
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .prikaz th, .prikaz td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .prikaz th {
+    background-color: #f2f2f2;
   }
   
   .deleteBtn {
-    background-color: #4CAF50;
+    background-color: #ff4d4d;
     color: white;
     border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
     border-radius: 5px;
+    padding: 5px 10px;
     cursor: pointer;
-    margin-left:8px;
+    margin-left: 7px;
   }
+  .editBtn {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 7px;
+  }
+
   
+  .deleteBtn:hover {
+    background-color: #cc0000;
+  }
   
