@@ -3,22 +3,18 @@ import './App.css';
 import { Button } from './Button';
 import './hero.css';
 
-function HeroSection() {
+function HeroSection({flag,trenutniKorisnik}) {
   const handleReset = () => {
     // Očisti cijeli localStorage
-    localStorage.clear();
-
-    // Ili ukloni specifični ključ iz localStorage
-    // localStorage.removeItem('imeKljuca');
-
-    // Dodatne akcije nakon resetovanja (opcionalno)
-    // npr. osvježavanje stranice ili ažuriranje stanja aplikacije
-    window.location.reload(); // Osvježava stranicu
+   /* localStorage.clear();
+    window.location.reload();*/ console.log(trenutniKorisnik); // Osvježava stranicu
   };
   return (
     <div className='hero-container'>
       <video src='/video-1.mp4' autoPlay loop muted />
-      <h1>ADVENTURE AWAITS</h1>
+          {flag && trenutniKorisnik.length > 0 && <h2 id="pozdrav">Dobrodošao, {trenutniKorisnik[0].unosImena}</h2>}
+
+      <h2>ADVENTURE AWAITS</h2>
       <p>What are you waiting for?</p>
       <div className='hero-btns'>
         <Button
@@ -34,7 +30,7 @@ function HeroSection() {
           buttonStyle='btn--primary'
           buttonSize='btn--large'
           whereTo='sign-up'
-          onClick={console.log('hey')}
+          
         >
           WATCH TRAILER <i className='far fa-play-circle' />
         </Button>

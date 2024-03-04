@@ -3,7 +3,7 @@ import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({flag,izadji}) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -37,40 +37,42 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
+           {flag && <li className='nav-item'>
               <Link
-                to='/services'
+              
+                to='/unos'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Services
+                Rezerviši
               </Link>
-            </li>
-            <li className='nav-item'>
+            </li>}
+           {flag && <li className='nav-item'>
               <Link
                 to='/products'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Products
+                Rezervacije
               </Link>
-            </li>
+            </li>}
 
             <li>
               <Link
-                to='/sign-up'
+                to='/sign-in'
                 className='nav-links-mobile'
                 onClick={closeMobileMenu}
               >
-                Sign Up
+                Sign Out
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline' whereTo='sign-up'>SIGN UP</Button>}
+          {button && <Button buttonStyle='btn--outline' whereTo='' onClick={()=>izadji()}>    {flag ? "SIGN OUT" : "SIGN IN"}
+</Button>}
         </div>
       </nav>
     </>
