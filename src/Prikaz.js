@@ -5,6 +5,7 @@ import './Prikaz.css';
 function Prikaz({ destinacije, obrisiDestinaciju, setEditovane }) {
   const [editableRow, setEditableRow] = useState(null);
   const [editedData, setEditedData] = useState({});
+  let [empty,setEmpty]=useState(true);
 
   const handleEdit = (id) => {
     setEditableRow(id);
@@ -31,6 +32,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane }) {
 
   const handleInputChange = (e, column, id) => {
     const value = e.target.value;
+    setEmpty(false);
     setEditedData((prevData) => ({
       ...prevData,
       [id]: {

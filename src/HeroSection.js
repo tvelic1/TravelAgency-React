@@ -7,7 +7,7 @@ function HeroSection({flag,trenutniKorisnik}) {
   const handleReset = () => {
     // Očisti cijeli localStorage
    /* localStorage.clear();
-    window.location.reload();*/ console.log(trenutniKorisnik); // Osvježava stranicu
+    window.location.reload();*/  // Osvježava stranicu
   };
   return (
     <div className='hero-container'>

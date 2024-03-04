@@ -9,26 +9,20 @@ function Signup({dodajK}) {
   const [unosImena, setIme] = useState('');
   const [unosPw, setPw] = useState('');
   const navigate = useNavigate();
- //localStorage.setItem('id',id);
+
  const handleSubmit = (e) => {
     e.preventDefault();
+      let x = parseInt(localStorage.getItem('id1') || '0', 10);
+    x += 1; 
   
-    // Dohvati trenutni id iz localStorage-a i pretvori ga u broj. Ako ne postoji, postavi na 0.
-    let x = parseInt(localStorage.getItem('id1') || '0', 10);
-    x += 1; // Povećavamo x za 1
-  
-    // Sačuvaj novi uvećani id natrag u localStorage
     localStorage.setItem('id1', x.toString());
+
+      dodajK({ id: x, unosMail, unosImena, unosPw });
   
-    // Proslijedi novi id zajedno s ostalim podacima o destinaciji
-    dodajK({ id: x, unosMail, unosImena, unosPw });
-  
-    // Resetuj polja forme
     setUnos('');
     setIme('');
     setPw('');
   
-    // Preusmjeri na stranicu za prikaz
     navigate('/');
   };
     return (
