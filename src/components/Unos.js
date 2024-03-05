@@ -18,7 +18,7 @@ useEffect(() => {
     let x = parseInt(localStorage.getItem('id') || '0', 10);
     x += 1;
     localStorage.setItem('id', x.toString());
-    dodaj({ id: x, unosDestinacije:JSON.parse(localStorage.getItem('r')), unosImena: prikazImena[0].unosImena, unosPrezimena });
+    dodaj({ id: x, unosDestinacije:JSON.parse(localStorage.getItem('r')), unosImena: prikazImena[0].unosImena, unosPrezimena:prikazImena[0].unosPrezimena });
     setPrezime('');
 
     navigate('/products'); 
@@ -28,7 +28,7 @@ useEffect(() => {
     <form onSubmit={handleSubmit} className="unosForma">
       <input type="text" value={JSON.parse(localStorage.getItem('r'))} readOnly placeholder="Destinacija" />
       <input type="text" value={prikazImena[0].unosImena} placeholder="Ime" readOnly />
-      <input type="text" value={unosPrezimena} onChange={(e) => setPrezime(e.target.value)} placeholder="Prezime" />
+      <input type="text" value={prikazImena[0].unosPrezimena} readOnly  placeholder="Prezime" />
       <button type="submit">Rezervisi</button>
     </form>
   );

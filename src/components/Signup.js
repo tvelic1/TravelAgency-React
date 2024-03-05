@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 function Signup({ dodajK }) {
     const [unosMail, setUnos] = useState('');
     const [unosImena, setIme] = useState('');
+    const [unosPrezimena, setPrezime] = useState('');
+    const [unosUsera, setUser] = useState('');
     const [unosPw, setPw] = useState('');
     const navigate = useNavigate();
 
@@ -17,10 +19,12 @@ function Signup({ dodajK }) {
 
         localStorage.setItem('id1', x.toString());
 
-        dodajK({ id: x, unosMail, unosImena, unosPw });
+        dodajK({ id: x, unosMail, unosImena,unosPrezimena, unosUsera, unosPw });
 
         setUnos('');
         setIme('');
+        setPrezime('');
+        setUser('');
         setPw('');
 
         navigate('/');
@@ -30,8 +34,16 @@ function Signup({ dodajK }) {
             <form onSubmit={handleSubmit} className="signup-form">
                 <h2>Registracija</h2>
                 <div className="form-group">
-                    <label htmlFor="username">Korisničko ime:</label>
+                    <label htmlFor="username">Ime:</label>
                     <input type="text" id="username" name="username" value={unosImena} onChange={(e) => setIme(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="prezime">Prezime:</label>
+                    <input type="text" id="prezime" name="prezime" value={unosPrezimena} onChange={(e) => setPrezime(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="user">Username:</label>
+                    <input type="text" id="user" name="user" value={unosUsera} onChange={(e) => setUser(e.target.value)} required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>

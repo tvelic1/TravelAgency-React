@@ -10,7 +10,7 @@ function Prijava({ korisnici, callbackTrenutni }) {
     const navigate = useNavigate();
     //localStorage.setItem('id',id);
     const handleSubmit = (e) => {
-        let user = korisnici.filter(x => x.unosImena == unosImenaa && x.unosPw == unosPwa);
+        let user = korisnici.filter(x => x.unosUsera == unosImenaa && x.unosPw == unosPwa);
         if (user.length) {
             navigate('/home');
             callbackTrenutni(user);
