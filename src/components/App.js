@@ -15,9 +15,6 @@ function App() {
   const [korisnici, setKorisnici] = useState([]);
   const [trenutniKorisnik, setTrenutnog] = useState('');
   const [flag, setFlag] = useState(false);
-const [rezervisan,setRezervisan]=useState('');
-
-
 
   useEffect(() => {
     const sacuvaneDestinacije = JSON.parse(localStorage.getItem('destinacije'));
@@ -44,8 +41,9 @@ const [rezervisan,setRezervisan]=useState('');
 
   }
   const rezervacija =(x)=>{
-    setRezervisan(x);
     localStorage.setItem('rezervacija',JSON.stringify(x));
+    localStorage.setItem('r', JSON.stringify(x[0].ime)); 
+
   }
   const callbackTrenutni = (x) => {
     setTrenutnog(x);
@@ -85,7 +83,7 @@ const [rezervisan,setRezervisan]=useState('');
         <Navbar flag={flag} izadji={izadji} />
         <Routes>
           <Route path='/home' exact element={<Home flag={flag} trenutniKorisnik={trenutniKorisnik} />} />
-          <Route path="/unos" element={<Unos dodaj={dodajDestinaciju} rezervisan={rezervisan} />} />
+          <Route path="/unos" element={<Unos dodaj={dodajDestinaciju}  />} />
           <Route path="/products" element={<Prikaz destinacije={destinacije} obrisiDestinaciju={obrisiDestinaciju} setEditovane={callbackEdit} />} />
           <Route path="/sign-up" element={<Signup dodajK={dodajKorisnika} />} />
           <Route path="/" element={<Prijava korisnici={korisnici} callbackTrenutni={callbackTrenutni} />} />
