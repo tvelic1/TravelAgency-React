@@ -83,12 +83,12 @@
 
   .nav-menu {
     display: flex;
-    box-sizing: border-box; /* Ovo osigurava da padding i border ne dodaju na širinu */
+    box-sizing: border-box;
     flex-direction: column;
     width: 100%;
     height: 65vh;
     position: absolute;
-    top:42px;
+    top: 42px;
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
@@ -103,24 +103,25 @@
     z-index: 1;
     width: 100%;
     overflow-y: hidden;
-    
+
   }
-  
-  
-  .nav-item,.nav-links {
+
+
+  .nav-item,
+  .nav-links {
     text-align: center;
-    padding: 2rem; /* Možda prilagodite ovo ako je potrebno */
+    padding: 2rem;
     width: 100%;
     display: block;
-    box-sizing: border-box; /* Ovo osigurava da padding i border ne dodaju na širinu */
+    box-sizing: border-box;
   }
-  
+
   .nav-links:hover {
     background-color: purple;
     color: #242424;
     border-radius: 0;
   }
-  
+
 
   .navbar-logo {
     position: absolute;

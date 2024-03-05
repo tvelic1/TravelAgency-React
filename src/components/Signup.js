@@ -1,30 +1,30 @@
-import React, {useState} from 'react';
-import './signup.css';
+import React, { useState } from 'react';
+import '../css/Signup.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-function Signup({dodajK}) {
+function Signup({ dodajK }) {
     const [unosMail, setUnos] = useState('');
-  const [unosImena, setIme] = useState('');
-  const [unosPw, setPw] = useState('');
-  const navigate = useNavigate();
+    const [unosImena, setIme] = useState('');
+    const [unosPw, setPw] = useState('');
+    const navigate = useNavigate();
 
- const handleSubmit = (e) => {
-    e.preventDefault();
-      let x = parseInt(localStorage.getItem('id1') || '0', 10);
-    x += 1; 
-  
-    localStorage.setItem('id1', x.toString());
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let x = parseInt(localStorage.getItem('id1') || '0', 10);
+        x += 1;
 
-      dodajK({ id: x, unosMail, unosImena, unosPw });
-  
-    setUnos('');
-    setIme('');
-    setPw('');
-  
-    navigate('/');
-  };
+        localStorage.setItem('id1', x.toString());
+
+        dodajK({ id: x, unosMail, unosImena, unosPw });
+
+        setUnos('');
+        setIme('');
+        setPw('');
+
+        navigate('/');
+    };
     return (
         <div className="signup-container">
             <form onSubmit={handleSubmit} className="signup-form">

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
+import '../css/Navbar.css';
 
-function Navbar({flag,izadji}) {
+function Navbar({ flag, izadji }) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -41,17 +41,13 @@ function Navbar({flag,izadji}) {
                 Home
               </Link>
             </li>
-           {flag && <li className='nav-item'>
-              <Link
-              
-                to='/unos'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Rezerviši
+            <li className='nav-item'>
+              <Link to='/dest' className='nav-links' onClick={closeMobileMenu}>
+                Destinacije
               </Link>
-            </li>}
-           {flag && <li className='nav-item'>
+            </li>
+            
+            {flag && <li className='nav-item'>
               <Link
                 to='/products'
                 className='nav-links'
@@ -71,8 +67,8 @@ function Navbar({flag,izadji}) {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline' whereTo='' onClick={()=>izadji()}>    {flag ? "SIGN OUT" : "SIGN IN"}
-</Button>}
+          {button && <Button buttonStyle='btn--outline' whereTo='' onClick={() => izadji()}>    {flag ? "SIGN OUT" : "SIGN IN"}
+          </Button>}
         </div>
       </nav>
     </>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FaTrash, FaEdit, FaCheck } from 'react-icons/fa'; // Importujete ikonice
-import './Prikaz.css';
+import { FaTrash, FaEdit, FaCheck } from 'react-icons/fa'; 
+import '../css/Prikaz.css';
 
 function Prikaz({ destinacije, obrisiDestinaciju, setEditovane }) {
   const [editableRow, setEditableRow] = useState(null);
   const [editedData, setEditedData] = useState({});
-  let [empty,setEmpty]=useState(true);
+  let [empty, setEmpty] = useState(true);
 
   const handleEdit = (id) => {
     setEditableRow(id);
