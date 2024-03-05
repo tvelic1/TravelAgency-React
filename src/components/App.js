@@ -2,7 +2,7 @@ import Navbar from './Navbar';
 import '../css/App.css';
 import Unos from './Unos';
 import Prikaz from './Prikaz';
-import { BrowserRouter as Router, Routes, Route, json } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Signup from './Signup';
 import Prijava from './Prijava';
@@ -34,6 +34,7 @@ const [rezervisan,setRezervisan]=useState('');
     if (sacuvaniKorisnik) {
       setTrenutnog(sacuvaniKorisnik);
     }
+    
 
   }, []);
 

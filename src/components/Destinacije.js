@@ -44,9 +44,11 @@ function Destinacije({rezervacija,flag}) {
 
   // Funkcija za rezervaciju koja se poziva na klik dugmeta
   const rezervisiDestinaciju = (id) => {
-    rezervacija(destinacije.filter(x=>x.id==id));
+    let x=destinacije.filter(x=>x.id==id);
+    if(x){
+    rezervacija(x);
     //console.log(`Rezervisana je destinacija sa ID: ${JSON.stringify(destinacije.filter(x=>x.id==id))}`);
-    navigate('/unos')
+    navigate('/unos')}
   };
 
   return (
