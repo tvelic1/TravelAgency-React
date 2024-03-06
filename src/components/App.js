@@ -85,7 +85,7 @@ function App() {
           <Route path='/home' exact element={<Home flag={flag} trenutniKorisnik={trenutniKorisnik} />} />
           <Route path="/unos" element={<Unos dodaj={dodajDestinaciju}  />} />
           <Route path="/products" element={<Prikaz destinacije={destinacije} obrisiDestinaciju={obrisiDestinaciju} setEditovane={callbackEdit} trenutniKorisnik={trenutniKorisnik} />} />
-          <Route path="/sign-up" element={<Signup dodajK={dodajKorisnika} />} />
+          <Route path="/sign-up" element={<Signup dodajK={dodajKorisnika} korisnici={korisnici} />} />
           <Route path="/" element={<Prijava korisnici={korisnici} callbackTrenutni={callbackTrenutni} />} />
           <Route path="/dest" element={<Destinacije rezervacija={rezervacija} flag={flag} />} />
 

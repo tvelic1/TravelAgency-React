@@ -4,7 +4,10 @@
     align-items: center;
     height: 100vh;
 }
-
+#warn{
+    color:red;
+    font-size: large;
+}
 .signup-form {
     width: 300px;
     padding: 20px;

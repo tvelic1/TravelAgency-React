@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-function Signup({ dodajK }) {
+function Signup({ dodajK,korisnici }) {
     const [unosMail, setUnos] = useState('');
     const [unosImena, setIme] = useState('');
     const [unosPrezimena, setPrezime] = useState('');
     const [unosUsera, setUser] = useState('');
     const [unosPw, setPw] = useState('');
+    const [flag, setFlag] = useState(false);
+
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -18,8 +20,11 @@ function Signup({ dodajK }) {
         x += 1;
 
         localStorage.setItem('id1', x.toString());
-
-        dodajK({ id: x, unosMail, unosImena,unosPrezimena, unosUsera, unosPw });
+       // console.log(korisnici.filter(x=>x.unosUsera==unosUsera).length)
+        if(korisnici.filter(x=>x.unosUsera==unosUsera).length==0)
+        {dodajK({ id: x, unosMail, unosImena,unosPrezimena, unosUsera, unosPw });
+        
+    
 
         setUnos('');
         setIme('');
@@ -27,7 +32,11 @@ function Signup({ dodajK }) {
         setUser('');
         setPw('');
 
-        navigate('/');
+        navigate('/');}
+
+        else{
+            setFlag(true);
+        }
     };
     return (
         <div className="signup-container">
@@ -57,6 +66,7 @@ function Signup({ dodajK }) {
                     <button type="submit" className="signup-button">Registriraj se</button>
                 </div>
                 <Link to="/" className="signup-link">Ako imaš račun, prijavi se</Link>
+                {flag && <p id="warn">Korisnik sa istim username već postoji, promijenite username</p>}
 
             </form>
         </div>

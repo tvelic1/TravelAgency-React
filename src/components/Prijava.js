@@ -21,7 +21,7 @@ function Prijava({ korisnici, callbackTrenutni }) {
             <form onSubmit={handleSubmit} className="signup-form">
                 <h2>Prijava</h2>
                 <div className="form-group">
-                    <label htmlFor="username">Korisničko ime:</label>
+                    <label htmlFor="username">Username:</label>
                     <input type="text" id="username" name="username" value={unosImenaa} onChange={(e) => setIme(e.target.value)} required />
                 </div>
 
