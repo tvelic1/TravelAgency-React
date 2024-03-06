@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { FaTrash, FaEdit, FaCheck } from 'react-icons/fa'; 
 import '../css/Prikaz.css';
 
-function Prikaz({ destinacije, obrisiDestinaciju, setEditovane }) {
+function Prikaz({ destinacije, obrisiDestinaciju, setEditovane,trenutniKorisnik }) {
   const [editableRow, setEditableRow] = useState(null);
   const [editedData, setEditedData] = useState({});
-  let [empty, setEmpty] = useState(true);
 
   const handleEdit = (id) => {
     setEditableRow(id);
+    //console.log(trenutniKorisnik[0].id);
   };
 
   const handleConfirmEdit = (id) => {
@@ -32,7 +32,6 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane }) {
 
   const handleInputChange = (e, column, id) => {
     const value = e.target.value;
-    setEmpty(false);
     setEditedData((prevData) => ({
       ...prevData,
       [id]: {
@@ -53,7 +52,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane }) {
         </tr>
       </thead>
       <tbody>
-        {destinacije.map((destinacija) => (
+        {destinacije.filter(destinacija => destinacija.idK===trenutniKorisnik[0].id).map((destinacija) => (
           <tr key={destinacija.id}>
             <td>
               {editableRow === destinacija.id ? (

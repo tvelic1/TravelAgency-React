@@ -19,7 +19,7 @@ function Unos({ dodaj}) {
     let x = parseInt(localStorage.getItem('id') || '0', 10);
     x += 1;
     localStorage.setItem('id', x.toString());
-    dodaj({ id: x, unosDestinacije:JSON.parse(localStorage.getItem('r')), unosImena: prikazImena[0].unosImena, unosPrezimena:prikazImena[0].unosPrezimena });
+    dodaj({ id: x, unosDestinacije:JSON.parse(localStorage.getItem('r')), unosImena: prikazImena[0].unosImena, unosPrezimena:prikazImena[0].unosPrezimena, idK:prikazImena[0].id });
     navigate('/products'); 
   };
 
