@@ -1,18 +1,35 @@
-import React from 'react';
 import '../css/App.css';
 import { Button } from './Button';
 import '../css/HeroSection.css';
+import React, { useEffect,useState } from 'react';
+
 
 function HeroSection({ flag, trenutniKorisnik }) {
+  const [showTitle, setShowTitle] = useState(true); // Stanje koje prati da li naslov treba da bude prikazan
+
   const handleReset = () => {
     // Očisti cijeli localStorage
     /* localStorage.clear();
      window.location.reload();*/  // Osvježava stranicu
   };
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      setShowTitle(window.scrollY ===0); // Ako je trenutni scroll manji od prethodnog, prikaži naslov
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+
+    };
+  }, []);
   return (
     <div className='hero-container'>
       <video src='/video-1.mp4' autoPlay loop muted />
-      {flag && trenutniKorisnik.length > 0 && <h2 id="pozdrav">Dobrodošao, {trenutniKorisnik[0].unosImena}</h2>}
+      {flag && trenutniKorisnik.length > 0 && <h2 id="pozdrav" className={`pozdrav ${showTitle ? '' : 'hide'}`}>Dobrodošao, {trenutniKorisnik[0].unosImena}</h2>}
 
       <h2>ADVENTURE AWAITS</h2>
       <p>What are you waiting for?</p>

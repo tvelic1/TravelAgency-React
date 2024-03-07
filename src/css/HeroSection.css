@@ -6,7 +6,7 @@ video {
   z-index: -1;
 }
 
-.hero-container {
+.hero-container  {
   /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
   height: 100vh;
   width: 100%;
@@ -17,11 +17,15 @@ video {
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: contain;
 }
+.hide {
+  display: none;
+}
 
 #pozdrav {
   position: fixed;
   font-size: 20px;
   margin-top: -650px;
+  
 }
 
 .hero-container>h2 {
