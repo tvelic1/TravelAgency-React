@@ -62,7 +62,7 @@ app.post('/login',(req,res)=>{
             res.status(500).json({ error: error.message });
         } else {
             if (results.length > 0)
-                res.status(200).json({ message: 'Uspješno ste se prijavili!' });
+                res.status(200).json(results);
             else
                 res.status(500).json({ error: "Ne postoji korisnik" });
         }
