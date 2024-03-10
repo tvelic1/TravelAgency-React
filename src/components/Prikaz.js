@@ -52,39 +52,38 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane,trenutniKorisnik 
         </tr>
       </thead>
       <tbody>
-        {destinacije.filter(destinacija => destinacija.idK===trenutniKorisnik[0].id).map((destinacija) => (
+        {JSON.parse(localStorage.getItem('prikaz')).map((destinacija) => (
           <tr key={destinacija.id}>
             <td>
               {editableRow === destinacija.id ? (
                 <input
                   type="text"
-                  value={editedData[destinacija.id]?.ime || destinacija.unosImena}
+                  value={editedData[destinacija.id]?.ime || destinacija.ime}
                   onChange={(e) => handleInputChange(e, 'ime', destinacija.id)}
                 />
               ) : (
-                destinacija.unosImena
+                destinacija.ime
               )}
             </td>
             <td>
               {editableRow === destinacija.id ? (
                 <input
                   type="text"
-                  value={editedData[destinacija.id]?.prezime || destinacija.unosPrezimena}
+                  value={editedData[destinacija.id]?.prezime || destinacija.prezime}
                   onChange={(e) => handleInputChange(e, 'prezime', destinacija.id)}
                 />
               ) : (
-                destinacija.unosPrezimena
-              )}
+                destinacija.prezime              )}
             </td>
             <td>
               {editableRow === destinacija.id ? (
                 <input
                   type="text"
-                  value={editedData[destinacija.id]?.destinacija || destinacija.unosDestinacije}
+                  value={editedData[destinacija.id]?.destinacija || destinacija.destination_name}
                   onChange={(e) => handleInputChange(e, 'destinacija', destinacija.id)}
                 />
               ) : (
-                destinacija.unosDestinacije
+                destinacija.destination_name
               )}
             </td>
             <td>

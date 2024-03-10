@@ -18,10 +18,30 @@ function Prijava({ korisnici, callbackTrenutni }) {
                 password
                 
             });
-            console.log(response.data);
-            callbackTrenutni();
-            navigate('/home')
-            // Dodajte redirekciju ili drugu logiku nakon uspješne registracije
+            if(!response.data.error)
+            {console.log(response.data);
+            callbackTrenutni(response.data);
+            const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
+            const url = 'http://localhost:4000/prikazi';
+            
+            fetch(url, {
+              method: 'POST', // Koristimo POST metodu
+              headers: {
+                'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+              },
+              body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            })
+            .then(data => {
+              localStorage.setItem('prikaz', JSON.stringify(data));
+            })
+            .catch(error => console.log(error));
+            navigate('/home');}
         } catch (error) {
             console.error('Greška prilikom prijave:', error);
         }

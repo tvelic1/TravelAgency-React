@@ -1,64 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/destinacije.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function Destinacije({rezervacija,flag}) {
-    const navigate = useNavigate();
-    const [destinacije, setDestinacije] = useState([
-    {
-      id: 1,
-      ime: 'Istanbul',
-      cijena: '100',
-      datum: '2024-03-10',
-      slikaUrl: '/istanbul.jpg'
-    },
-    {
-      id: 2,
-      ime: 'Pariz',
-      cijena: '150',
-      datum: '2024-03-15',
-      slikaUrl: '/paris.jpg'
-    },
-    {
-      id: 3,
-      ime: 'Barselona',
-      cijena: '200',
-      datum: '2024-03-20',
-      slikaUrl: '/barcelona.jpg'
-    },
-    {
-      id: 4,
-      ime: 'Firenca',
-      cijena: '250',
-      datum: '2024-03-25',
-      slikaUrl: '/firenza.jpg'
-    },
-    {
-      id: 5,
-      ime: 'London',
-      cijena: '300',
-      datum: '2024-03-30',
-      slikaUrl: '/london.jpg'
-    }
-  ]);
+function Destinacije({ rezervacija, flag }) {
+  const navigate = useNavigate();
+  const [destinacije, setDestinacije] = useState([]);
 
-  // Funkcija za rezervaciju koja se poziva na klik dugmeta
-  const rezervisiDestinaciju = (id) => {
-    let x=destinacije.filter(x=>x.id==id);
-    if(x){
-    rezervacija(x);
-    //console.log(`Rezervisana je destinacija sa ID: ${JSON.stringify(destinacije.filter(x=>x.id==id))}`);
-    navigate('/unos')}
+  const rezervisiDestinaciju = (did) => { 
+    axios.post('/rezervisi', { id: did , ajdi: JSON.parse(localStorage.getItem('trenutni')).id
+  })
+      .then(response => {
+        axios.post('/res', { id: did, ajdi: JSON.parse(localStorage.getItem('trenutni')).id})
+        .then(resp => {rezervacija(resp.data[0]); navigate('/unos')})
+        .catch(error => {
+          console.error('Došlo je do greške', error);
+        })
+      })
+      .catch(error => {
+        // Obradite moguće greške
+        console.error('Došlo je do greške', error);
+      });
   };
+
+  const formatirajDatum = (datum) => {
+    const dateObj = new Date(datum);
+    const dan = dateObj.getDate();
+    const mjesec = dateObj.getMonth() + 1; // Mjeseci kreću od 0, pa se dodaje 1
+    const godina = dateObj.getFullYear();
+    return `${dan}.${mjesec}.${godina}`;
+  };
+  useEffect(() => {
+    fetch('http://localhost:4000/destinacije') // Dodajte http:// za lokalni server
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // Pretvara odgovor u JSON
+      })
+      .then(data => setDestinacije(data)) // Sprema podatke u stanje
+      .catch(error => console.error('There was a problem with your fetch operation:', error));
+  }, []); // Prazan niz kao drugi argument osigurava da se efekt pokrene samo jednom
 
   return (
     <div className='destinacije'>
       {destinacije.map((destinacija) => (
         <div className='komponenta' key={destinacija.id}>
-          <h2>{destinacija.ime}</h2>
+          <h2>{destinacija.naziv}</h2>
           <p>Cijena: {destinacija.cijena} KM</p>
-          <p>Krajnji datum prijave: {destinacija.datum}</p>
-          <img src={destinacija.slikaUrl} alt={destinacija.ime} />
+          <p>Krajnji datum prijave: {formatirajDatum(destinacija.datum)} </p>
+          <img src={destinacija.slika} alt={destinacija.naziv} />
           {flag && <button onClick={() => rezervisiDestinaciju(destinacija.id)}>
             Rezerviši
           </button>}

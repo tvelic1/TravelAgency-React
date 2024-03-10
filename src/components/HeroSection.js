@@ -13,7 +13,6 @@ function HeroSection({ flag, trenutniKorisnik }) {
      window.location.reload();*/  // Osvježava stranicu
   };
   useEffect(() => {
-    let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
       setShowTitle(window.scrollY ===0); // Ako je trenutni scroll manji od prethodnog, prikaži naslov
@@ -29,7 +28,7 @@ function HeroSection({ flag, trenutniKorisnik }) {
   return (
     <div className='hero-container'>
       <video src='/video-1.mp4' autoPlay loop muted />
-      {flag && trenutniKorisnik.length > 0 && <h2 id="pozdrav" className={`pozdrav ${showTitle ? '' : 'hide'}`}>Dobrodošao, {trenutniKorisnik[0].unosImena}</h2>}
+      {flag   && <h2 id="pozdrav" className={`pozdrav ${showTitle ? '' : 'hide'}`}>Dobrodošao, {trenutniKorisnik.ime}</h2>}
 
       <h2>ADVENTURE AWAITS</h2>
       <p>What are you waiting for?</p>
@@ -43,7 +42,6 @@ function HeroSection({ flag, trenutniKorisnik }) {
           GET STARTED
         </Button>
         <Button
-
           buttonStyle='btn--primary'
           buttonSize='btn--large'
           whereTo='sign-up'

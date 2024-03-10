@@ -16,6 +16,9 @@ function App() {
   const [destinacije, setDestinacija] = useState([]);
   const [korisnici, setKorisnici] = useState([]);
   const [trenutniKorisnik, setTrenutnog] = useState('');
+
+  const [trenutnarez, setRez] = useState('');
+
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
@@ -33,23 +36,28 @@ function App() {
     if (sacuvaniKorisnik) {
       setTrenutnog(sacuvaniKorisnik);
     }
+   
     
 
   }, []);
+
 
   const callbackEdit = (x) => {
     setDestinacija(x);
     localStorage.setItem('destinacije', JSON.stringify(x));
 
   }
-  const rezervacija =(x)=>{
-    localStorage.setItem('rezervacija',JSON.stringify(x));
-    localStorage.setItem('r', JSON.stringify(x[0].ime)); 
+  const callbackRez = (x) => {
+    setRez(x);
+    localStorage.setItem('rez', JSON.stringify(x));
 
   }
-  const callbackTrenutni = () => {
+  const callbackTrenutni = (x) => {
     setFlag(true);
     localStorage.setItem('flag', true)
+    setTrenutnog(x);
+    localStorage.setItem('trenutni', JSON.stringify(x));
+
 
   }
   const izadji = () => {
@@ -89,7 +97,7 @@ function App() {
           <Route path="/products" element={<Prikaz destinacije={destinacije} obrisiDestinaciju={obrisiDestinaciju} setEditovane={callbackEdit} trenutniKorisnik={trenutniKorisnik} />} />
           <Route path="/sign-up" element={<Signup dodajK={dodajKorisnika} korisnici={korisnici} />} />
           <Route path="/" element={<Prijava korisnici={korisnici} callbackTrenutni={callbackTrenutni} />} />
-          <Route path="/dest" element={<Destinacije rezervacija={rezervacija} flag={flag} />} />
+          <Route path="/dest" element={<Destinacije rezervacija={callbackRez} flag={flag} />} />
 
 
 

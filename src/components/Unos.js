@@ -1,34 +1,48 @@
-import React, { useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { json, useNavigate} from 'react-router-dom';
 import '../css/Unos.css'; 
+import axios from 'axios';
 
-function Unos({ dodaj}) {
+function Unos({ dodaj,}) {
+ 
   const navigate = useNavigate();
-  const prikazImena = JSON.parse(localStorage.getItem("trenutni"));
-  
+ 
 
-/*useEffect(() => {
-  if(rezervisan && rezervisan.length > 0){
-      localStorage.setItem('r', JSON.stringify(rezervisan[0].ime)); 
-  }
-  setPrezime(JSON.parse(localStorage.getItem('r')));
-}, []);*/
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    let x = parseInt(localStorage.getItem('id') || '0', 10);
-    x += 1;
-    localStorage.setItem('id', x.toString());
-    dodaj({ id: x, unosDestinacije:JSON.parse(localStorage.getItem('r')), unosImena: prikazImena[0].unosImena, unosPrezimena:prikazImena[0].unosPrezimena, idK:prikazImena[0].id });
-    navigate('/products'); 
+    e.preventDefault(); // Pretpostavljam da želite sprečiti podrazumevano ponašanje forme
+  
+    const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
+    const url = 'http://localhost:4000/prikazi';
+    
+    fetch(url, {
+      method: 'POST', // Koristimo POST metodu
+      headers: {
+        'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+      },
+      body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      localStorage.setItem('prikaz', JSON.stringify(data));
+      navigate('/products'); // Pretpostavka je da imate useNavigate hook za navigaciju
+    })
+    .catch(error => console.log(error));
+  
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className="unosForma">
-      <input type="text" value={JSON.parse(localStorage.getItem('r'))} readOnly placeholder="Destinacija" />
-      <input type="text" value={prikazImena[0].unosImena} placeholder="Ime" readOnly />
-      <input type="text" value={prikazImena[0].unosPrezimena} readOnly  placeholder="Prezime" />
-      <button type="submit">Rezervisi</button>
+      <input type="text" value={JSON.parse(localStorage.getItem('rez')).destination_name} readOnly placeholder="Destinacija" />
+      <input type="text" value={JSON.parse(localStorage.getItem('rez')).ime} placeholder="Ime" readOnly />
+      <input type="text" value={JSON.parse(localStorage.getItem('rez')).prezime} readOnly  placeholder="Prezime" />
+      <button type="submit">Pogledaj sve rezervacije</button>
     </form>
   );
 }
