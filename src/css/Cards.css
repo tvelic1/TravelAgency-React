@@ -74,13 +74,17 @@
     background-color: #1f98f4;
     box-sizing: border-box;
   }
-  
+  .cards__items.half .cards__item__img {
+    width: 90%;
+    right:5px;
+  }
   .cards__item__img {
     position: absolute;
     top: 0;
     bottom: 0;
     left: -12%;
-    display: block;
+    display: flex;
+    justify-content: center;
     width:95%;
     max-width: 100%;
     height: 100%;

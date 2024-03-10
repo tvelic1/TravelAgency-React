@@ -1,11 +1,12 @@
 .prikaz {
   width: 100%;
   border-collapse: collapse;
+
 }
 
 .prikaz th,
 .prikaz td {
-  border: 1px solid #ddd;
+  border: 2px solid #1c1515;
   padding: 8px;
   text-align: left;
 }

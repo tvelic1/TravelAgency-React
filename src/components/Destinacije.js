@@ -43,18 +43,20 @@ function Destinacije({ rezervacija, flag }) {
   }, []); // Prazan niz kao drugi argument osigurava da se efekt pokrene samo jednom
 
   return (
+    <div className='wrapper'>
     <div className='destinacije'>
       {destinacije.map((destinacija) => (
         <div className='komponenta' key={destinacija.id}>
           <h2>{destinacija.naziv}</h2>
-          <p>Cijena: {destinacija.cijena} KM</p>
-          <p>Krajnji datum prijave: {formatirajDatum(destinacija.datum)} </p>
+          <p className='detalji'>Cijena: {destinacija.cijena} KM</p>
+          <p className='detalji'>Krajnji datum prijave: {formatirajDatum(destinacija.datum)} </p>
           <img src={destinacija.slika} alt={destinacija.naziv} />
           {flag && <button onClick={() => rezervisiDestinaciju(destinacija.id)}>
             Rezerviši
           </button>}
         </div>
       ))}
+    </div>
     </div>
   );
 }

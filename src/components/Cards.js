@@ -22,7 +22,7 @@ function Cards() {
               path='/services'
             />
           </ul>
-          <ul className='cards__items'>
+          <ul className='cards__items half'>
             <CardItem
               src='firenza.jpg'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'

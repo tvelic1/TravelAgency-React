@@ -3,14 +3,20 @@
     grid-template-columns: repeat(auto-fill, 400px);
     gap: 20px;
     padding-top: 20px;
-    padding-left:20px; /* Odvojite komponente od gornje ivice */
+    padding-left:20px; 
+
   }
-  
+  .wrapper {
+    background-color: #211d1e; 
+    padding: 20px; 
+  }
   .komponenta {
     border: 1px solid #ccc;
-    padding: 20px; /* Povećajte prostor oko komponente */
-    border-radius: 10px; /* Dodajte blagi zaobljeni rub */
-    text-align: center; /* Centrirajte tekst unutar komponente */
+    padding: 20px; 
+    border-radius: 10px; 
+    text-align: center; 
+    background-color: rgb(208, 95, 95);
+
   }
   
   .komponenta h2 {
@@ -19,22 +25,25 @@
   
   .komponenta img {
     width: 100%;
-    height: auto;
-    border-radius: 10px; /* Dodajte blagi zaobljeni rub slici */
+    height: 300px;
+    border-radius: 10px; 
   }
-  
+  .detalji{
+    font-weight: 500;
+    font-style: italic;
+  }
   .komponenta button {
-    margin-top: 20px; /* Povećajte razmak između buttona i ostalih elemenata */
-    padding: 10px 20px; /* Povećajte veličinu buttona */
-    border-radius: 5px; /* Dodajte blagi zaobljeni rub buttonu */
-    background-color: #007bff; /* Promijenite boju pozadine buttona */
-    color: white; /* Promijenite boju teksta buttona */
-    border: none; /* Uklonite rub buttona */
-    cursor: pointer; /* Promijenite kursor prilikom hovera */
-    transition: background-color 0.3s; /* Dodajte efekat pri promjeni boje pozadine */
+    margin-top: 20px; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
   }
   
   .komponenta button:hover {
-    background-color: #0056b3; /* Promijenite boju pozadine prilikom hovera */
+    background-color: #0056b3; 
   }
   
