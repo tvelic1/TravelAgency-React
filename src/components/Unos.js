@@ -39,6 +39,7 @@ function Unos({ dodaj,}) {
 
   return (
     <form onSubmit={handleSubmit} className="unosForma">
+    <p className="reservationDetails">Detalji vaše rezervacije: </p>
       <input type="text" value={JSON.parse(localStorage.getItem('rez')).destination_name} readOnly placeholder="Destinacija" />
       <input type="text" value={JSON.parse(localStorage.getItem('rez')).ime} placeholder="Ime" readOnly />
       <input type="text" value={JSON.parse(localStorage.getItem('rez')).prezime} readOnly  placeholder="Prezime" />

@@ -94,9 +94,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
 
         // Ako je ažuriranje uspješno, ažuriraj stanje i zaključaj polje
         setEditableRow(null);
-        setEditedData((prevData) => {
-          console.log("aaaaa")
-          if (!prevData) console.log("greskica")
+        setEditedData((prevData) => {          
           const newData = { ...prevData };
           delete newData[id];
           return newData;
