@@ -18,7 +18,7 @@ app.use(cors());
 const db=mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:'',
+    password:'password',
     database:"reakt"
 })
 db.connect((err) => {
@@ -38,6 +38,32 @@ app.get('/destinacije', (req, res) => {
         res.json(result);
     });
 });
+app.get('/rezervacije', (req, res) => {
+    db.query("SELECT * FROM rezervacija", (err, result) => {
+        if (err) {
+            // Ako dođe do greške, šaljemo status 500 (Internal Server Error) i poruku o grešci
+            return res.status(500).send(err);
+        }
+        // Ako nema greške, šaljemo dobijene podatke koristeći res.json()
+        res.json(result);
+    });
+});
+app.put('/rezervacija/:id', (req, res) => {
+    const { id } = req.params;
+    const { destinacijaId } = req.body;
+  
+    db.query(
+      "UPDATE rezervacija SET destinacijaId = ? WHERE id = ?",
+      [destinacijaId, id],
+      (err, result) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.status(200).send("Rezervacija uspješno ažurirana.");
+      }
+    );
+  });
+  
 app.post('/res', (req, res) => {
     db.query("SELECT u.ime, u.prezime, d.naziv AS destination_name FROM rezervacija p JOIN korisnik u ON p.korisnikId = u.id JOIN destinacija d ON p.destinacijaId = d.id WHERE p.korisnikId = ? and p.destinacijaId = ?",[req.body.ajdi,req.body.id], (err, result) => {
         if (err) {
