@@ -1,33 +1,131 @@
-import React, { useState } from 'react';
-import { FaTrash, FaEdit, FaCheck } from 'react-icons/fa'; 
+import React, { useState, useEffect } from 'react';
+import { FaTrash, FaEdit, FaCheck } from 'react-icons/fa';
 import '../css/Prikaz.css';
 
-function Prikaz({ destinacije, obrisiDestinaciju, setEditovane,trenutniKorisnik }) {
+function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik }) {
   const [editableRow, setEditableRow] = useState(null);
   const [editedData, setEditedData] = useState({});
+  const [destinacijeData, setDestinacijeData] = useState([]);
+  const [prikazData, setPrikazData] = useState([]);
+
+  const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
+  const url = 'http://localhost:4000/prikazi';
+
+  fetch(url, {
+    method: 'POST', // Koristimo POST metodu
+    headers: {
+      'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+    },
+    body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setPrikazData(data);
+      localStorage.setItem('prikaz', JSON.stringify(data)); // Pretpostavka je da imate useNavigate hook za navigaciju
+    })
+    .catch(error => console.log(error));
+
+  useEffect(() => {
+    // Dohvati podatke o destinacijama s backend servera
+    fetch('http://localhost:4000/destinacije')
+      .then(response => response.json())
+      .then(data => setDestinacijeData(data))
+      .catch(error => console.error('Error fetching destinations:', error));
+
+    /*   const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
+       const url = 'http://localhost:4000/prikazi';
+   
+       fetch(url, {
+         method: 'POST', // Koristimo POST metodu
+         headers: {
+           'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+         },
+         body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+       })
+         .then(response => {
+           if (!response.ok) {
+             throw new Error('Network response was not ok');
+           }
+           return response.json();
+         })
+         .then(data => {
+           localStorage.setItem('prikaz', JSON.stringify(data)); // Pretpostavka je da imate useNavigate hook za navigaciju
+         })
+         .catch(error => console.log(error));*/
+  }, []);
 
   const handleEdit = (id) => {
     setEditableRow(id);
-    //console.log(trenutniKorisnik[0].id);
+  };
+
+  const handleSelectChange = (e, id) => {
+    const value = e.target.value;
+    setEditedData((prevData) => ({
+      ...prevData,
+      [id]: {
+        ...prevData[id],
+        destinacija: value,
+      },
+    }));
   };
 
   const handleConfirmEdit = (id) => {
-    const updatedDestinacije = destinacije.map((destinacija) => {
-      if (destinacija.id === id && editedData[id]) {
-        return {
-          ...destinacija,
-          unosImena: editedData[id].ime || destinacija.unosImena,
-          unosPrezimena: editedData[id].prezime || destinacija.unosPrezimena,
-          unosDestinacije: editedData[id].destinacija || destinacija.unosDestinacije,
-        };
-      }
-      return destinacija;
-    });
+    let editedDestinationId = editedData[id]?.destinacija;
+    console.log("Data ", editedData)
+    if (!editedDestinationId) editedDestinationId = destinacijeData[0].id
+    // Izvrši ažuriranje u bazi bez obzira na promjenu destinacije
+    fetch(`http://localhost:4000/rezervacija/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ destinacijaId: editedDestinationId }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Neuspješno ažuriranje rezervacije.');
+        }
+        console.log('Rezervacija uspješno ažurirana.');
 
-    setEditableRow(null);
-    setEditedData({});
-    // Ažuriranje stanja destinacija
-    setEditovane(updatedDestinacije);
+        // Ako je ažuriranje uspješno, ažuriraj stanje i zaključaj polje
+        setEditableRow(null);
+        setEditedData((prevData) => {
+          console.log("aaaaa")
+          if (!prevData) console.log("greskica")
+          const newData = { ...prevData };
+          delete newData[id];
+          return newData;
+        });
+
+
+
+        const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
+        const url = 'http://localhost:4000/prikazi';
+
+        fetch(url, {
+          method: 'POST', // Koristimo POST metodu
+          headers: {
+            'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+          },
+          body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            localStorage.setItem('prikaz', JSON.stringify(data)); // Pretpostavka je da imate useNavigate hook za navigaciju
+          })
+          .catch(error => console.log(error));
+      })
+      .catch(error => console.error('Greška prilikom ažuriranja rezervacije:', error.message));
   };
 
   const handleInputChange = (e, column, id) => {
@@ -55,33 +153,21 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane,trenutniKorisnik 
         {JSON.parse(localStorage.getItem('prikaz')).map((destinacija) => (
           <tr key={destinacija.id}>
             <td>
-              {editableRow === destinacija.id ? (
-                <input
-                  type="text"
-                  value={editedData[destinacija.id]?.ime || destinacija.ime}
-                  onChange={(e) => handleInputChange(e, 'ime', destinacija.id)}
-                />
-              ) : (
-                destinacija.ime
-              )}
+              {destinacija.ime}
+            </td>
+            <td>
+              {destinacija.prezime}
             </td>
             <td>
               {editableRow === destinacija.id ? (
-                <input
-                  type="text"
-                  value={editedData[destinacija.id]?.prezime || destinacija.prezime}
-                  onChange={(e) => handleInputChange(e, 'prezime', destinacija.id)}
-                />
-              ) : (
-                destinacija.prezime              )}
-            </td>
-            <td>
-              {editableRow === destinacija.id ? (
-                <input
-                  type="text"
+                <select
                   value={editedData[destinacija.id]?.destinacija || destinacija.destination_name}
-                  onChange={(e) => handleInputChange(e, 'destinacija', destinacija.id)}
-                />
+                  onChange={(e) => handleSelectChange(e, destinacija.id)}
+                >
+                  {destinacijeData.map((item) => (
+                    <option key={item.id} value={item.id}>{item.naziv}</option>
+                  ))}
+                </select>
               ) : (
                 destinacija.destination_name
               )}
