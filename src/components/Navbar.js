@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+
 import '../css/Navbar.css';
+import { Link, ScrollLink } from 'react-scroll' ;
+import { Link as RouterLink } from 'react-router-dom'; // Import Link from react-router-dom and rename it to RouterLink
+
+
 
 function Navbar({ flag, izadji }) {
   const [click, setClick] = useState(false);
@@ -28,43 +32,41 @@ function Navbar({ flag, izadji }) {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+          <RouterLink to='/' className='navbar-logo' onClick={closeMobileMenu}>
             TRVL
             <i class='fab fa-typo3' />
-          </Link>
+          </RouterLink>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
+              <RouterLink to='/home' className='nav-links' onClick={closeMobileMenu}>
                 Home
-              </Link>
+              </RouterLink>
             </li>
             <li className='nav-item'>
-              <Link to='/dest' className='nav-links' onClick={closeMobileMenu}>
-                Destinacije
-              </Link>
+              <Link to='card' className='nav-links' smooth={true} offset={0} duration={500}>Cjsjcan</Link>
             </li>
             
             {flag && <li className='nav-item'>
-              <Link
+              <RouterLink
                 to='/products'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
                 Rezervacije
-              </Link>
+              </RouterLink>
             </li>}
 
             <li>
-              <Link
+              <RouterLink
                 to='/sign-in'
                 className='nav-links-mobile'
                 onClick={closeMobileMenu}
               >
                 Sign Out
-              </Link>
+              </RouterLink>
             </li>
           </ul>
           {button && <Button buttonStyle='btn--outline' whereTo='' onClick={() => izadji()}>    {flag ? "SIGN OUT" : "SIGN IN"}
