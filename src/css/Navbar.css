@@ -159,6 +159,8 @@
     padding: 1rem;
     border: 1px solid #fff;
     transition: all 0.3s ease-out;
+    background-color: aquamarine;
+    color: #242222;
   }
 
   .nav-links-mobile:hover {
