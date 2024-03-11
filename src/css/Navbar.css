@@ -115,12 +115,11 @@
     display: block;
     box-sizing: border-box;
     flex: 1; 
-    margin-top:-10px
+    margin-top:-10px;
   }
   
   .nav-links:hover {
-    background-color: purple;
-    color: #242424;
+    color: #f0ecec;
     border-radius: 0;
   }
 
@@ -161,10 +160,10 @@
     transition: all 0.3s ease-out;
     background-color: aquamarine;
     color: #242222;
+    width: 90%;
   }
 
   .nav-links-mobile:hover {
-    background: purple;
     color: #242424;
     transition: 250ms;
   }

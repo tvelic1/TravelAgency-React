@@ -55,6 +55,7 @@ h2{  text-align: center;
 .slider ul li{
     list-style: none;
     width: 25%;
+    
     padding: 20px;
     box-sizing: border-box;
     margin-right: 50px;
@@ -69,10 +70,11 @@ h2{  text-align: center;
     color: #676767;
     line-height: 1.4;
     background-color: rgb(159, 232, 232);
+    height: 320px;
 
 }
 .slide img {
-width: 100px;
+width: 150px;
 border-radius: 50%;
 margin-right: 10px;
 border: 4px solid #212EA0;

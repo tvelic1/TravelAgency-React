@@ -33,7 +33,7 @@ const Stories = () => {
                             <div className="user-info">
                                 <img className="profilna" src="paris.jpg" alt="" />
                                 <div>
-                                    <h3>User 1</h3>
+                                    <h3>Amina</h3>
                                     <span>Pariz</span>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@ const Stories = () => {
                             <div className="user-info">
                                 <img className="profilna" src="istanbul.jpg" alt="" />
                                 <div>
-                                    <h3>User 2</h3>
+                                    <h3>Selma</h3>
                                     <span>Istanbul</span>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ Putovanje preko agencije je definitivno bio pun pogodak jer smo mogli maksimalno
                             <div className="user-info">
                                 <img className="profilna" src="firenza.jpg" alt="" />
                                 <div>
-                                    <h3>User 3</h3>
+                                    <h3>Tarik</h3>
                                     <span>Firenca</span>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@ Stoga, svima koji planiraju posjetiti Firencu toplo preporučujem da se obrate o
                             <div className="user-info">
                                 <img className="profilna" src="barcelona.jpg" alt="" />
                                 <div>
-                                    <h3>User 4</h3>
+                                    <h3>Nataša</h3>
                                     <span>Barselona</span>
                                 </div>
                             </div>
