@@ -1,0 +1,81 @@
+.stories{
+    margin:0px auto;
+    position: relative;
+    background-color: aliceblue;
+    height: 100vh;
+    
+
+}
+
+
+.sub{
+    text-align: center;
+    color:#212EA0;
+    font-size: 26px;
+    font-weight: 550;
+    text-transform: uppercase;
+    margin:-30px 0 30px;
+    padding-top: 20px;
+
+}
+h2{  text-align: center;
+    font-size: 42px;
+    color:#000F38;
+    margin-top: 5px;
+    text-transform: none;}
+
+    .nextbutton, .button{
+        position: absolute;
+        top:50%;
+        right:0;
+        cursor: pointer;
+        border-radius: 50%;
+        width:50px;
+        transform: translateY(-50%);
+        z-index: 1000;
+    }
+.button{
+    right:auto;
+    left:0;
+}
+.slider {
+    overflow: hidden;
+}
+.slider ul {
+    display:flex;
+    width:200%;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-sizing: border-box;
+
+
+}
+.slider ul li{
+    list-style: none;
+    width: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+.slide {
+    box-shadow:  0 0 20px rgba(0,0,0,0.05);
+    padding: 40px;
+    border-radius: 10px;
+    color: #676767;
+    line-height: 1.4;
+    background-color: rgb(159, 232, 232);
+
+}
+.slide img {
+width: 100px;
+border-radius: 50%;
+margin-right: 10px;
+border: 4px solid #212EA0;
+
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+}

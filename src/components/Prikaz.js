@@ -58,8 +58,6 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
           return newData;
         });
 
-
-
         const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
         const url = 'http://localhost:4000/prikazi';
 
