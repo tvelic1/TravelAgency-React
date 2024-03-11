@@ -48,6 +48,26 @@ app.get('/rezervacije', (req, res) => {
         res.json(result);
     });
 });
+app.delete('/rezervacije/:id', (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+        return res.status(400).send("ID nije dostupan");
+    }
+
+    db.query("DELETE FROM rezervacija WHERE id = ?", id, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).send("Nema rezervacije s tim ID-om");
+        }
+
+        res.status(200).send("Rezervacija uspješno obrisana");
+    });
+});
+
 app.put('/rezervacija/:id', (req, res) => {
     const { id } = req.params;
     const { destinacijaId } = req.body;

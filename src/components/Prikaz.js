@@ -94,6 +94,27 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
     }));
   };
 
+  const handleDeleteConfirmation = (id) => {
+    if (window.confirm("Da li ste sigurni da želite obrisati rezervaciju?")) {
+      fetch(`http://localhost:4000/rezervacije/${id}`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Neuspješno brisanje rezervacije.');
+        }
+        console.log('Rezervacija uspješno obrisana.');
+        
+        const updatedPrikazData = prikazData.filter(destinacija => destinacija.id !== id);
+        setPrikazData(updatedPrikazData);
+  
+        localStorage.setItem('prikaz', JSON.stringify(updatedPrikazData));
+      })
+      .catch(error => console.error('Greška prilikom brisanja rezervacije:', error.message));
+    }
+  };
+  
+
   return (
     <table className='prikaz'>
       <thead>
@@ -137,7 +158,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
                   <FaEdit />
                 </button>
               )}
-              <button className="deleteBtn" onClick={() => obrisiDestinaciju(destinacija.id)}>
+              <button className="deleteBtn" onClick={() => handleDeleteConfirmation(destinacija.id)}>
                 <FaTrash />
               </button>
             </td>
