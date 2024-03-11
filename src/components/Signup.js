@@ -28,7 +28,6 @@ function SignUp() {
             console.log(response.data);
             setFlag(false);
             navigate('/')
-            // Dodajte redirekciju ili drugu logiku nakon uspješne registracije
         } catch (error) {
             console.error('Greška prilikom registracije:', error);
             setFlag(true);

@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
-
 import '../css/Navbar.css';
-import { Link, ScrollLink } from 'react-scroll' ;
-import { Link as RouterLink } from 'react-router-dom'; // Import Link from react-router-dom and rename it to RouterLink
-
-
+import { Link, ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 
 function Navbar({ flag, izadji }) {
+
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  const closeMenuAndSignOut=()=>{
+
+  const closeMenuAndSignOut = () => {
     setClick(false);
     izadji();
   }
@@ -53,10 +51,13 @@ function Navbar({ flag, izadji }) {
               <Link to='card' className='nav-links' smooth={true} offset={0} duration={500}>Avantura</Link>
             </li>
             <li className='nav-item'>
-            <RouterLink to='/dest' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='story' className='nav-links' smooth={true} offset={0} duration={500}>Stories</Link>
+            </li>
+            <li className='nav-item'>
+              <RouterLink to='/dest' className='nav-links' onClick={closeMobileMenu}>
                 Destinacije
               </RouterLink>
-              </li>
+            </li>
             {flag && <li className='nav-item'>
               <RouterLink
                 to='/products'
@@ -66,7 +67,6 @@ function Navbar({ flag, izadji }) {
                 Rezervacije
               </RouterLink>
             </li>}
-
             <li>
               <RouterLink
                 to='/'

@@ -24,17 +24,18 @@ h2{  text-align: center;
     margin-top: 5px;
     text-transform: none;}
 
-    .nextbutton, .button{
+    .nextbutton img, .button img{
         position: absolute;
         top:50%;
         right:0;
         cursor: pointer;
         border-radius: 50%;
         width:50px;
-        transform: translateY(-50%);
+        transform: translateY(-55%);
         z-index: 1000;
     }
-.button{
+.button img{
+    margin-right: 20%;
     right:auto;
     left:0;
 }
@@ -56,6 +57,9 @@ h2{  text-align: center;
     width: 25%;
     padding: 20px;
     box-sizing: border-box;
+    margin-right: 50px;
+    margin-left: 10px;
+
 
 }
 .slide {
@@ -77,6 +81,8 @@ border: 4px solid #212EA0;
 .user-info {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 25px;
+    margin-left: 10px;
 }

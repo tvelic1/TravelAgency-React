@@ -8,7 +8,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
   const [destinacijeData, setDestinacijeData] = useState([]);
   const [prikazData, setPrikazData] = useState([]);
 
-  
+
   useEffect(() => {
     setPrikazData(JSON.parse(localStorage.getItem('prikaz')))
     fetch('http://localhost:4000/destinacije')
@@ -52,7 +52,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
 
         // Ako je ažuriranje uspješno, ažuriraj stanje i zaključaj polje
         setEditableRow(null);
-        setEditedData((prevData) => {          
+        setEditedData((prevData) => {
           const newData = { ...prevData };
           delete newData[id];
           return newData;
@@ -62,11 +62,11 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
         const url = 'http://localhost:4000/prikazi';
 
         fetch(url, {
-          method: 'POST', 
+          method: 'POST',
           headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ ajdi: ajdi }) 
+          body: JSON.stringify({ ajdi: ajdi })
         })
           .then(response => {
             if (!response.ok) {
@@ -76,7 +76,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
           })
           .then(data => {
             setPrikazData(data);
-            localStorage.setItem('prikaz', JSON.stringify(data)); 
+            localStorage.setItem('prikaz', JSON.stringify(data));
           })
           .catch(error => console.log(error));
       })

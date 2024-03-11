@@ -9,39 +9,39 @@ function Prijava({ korisnici, callbackTrenutni }) {
     const [username, setIme] = useState('');
     const [password, setPw] = useState('');
     const navigate = useNavigate();
-    //localStorage.setItem('id',id);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('/login', {
                 username,
                 password
-                
+
             });
-            if(!response.data.error)
-            {console.log(response.data);
-            callbackTrenutni(response.data);
-            const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
-            const url = 'http://localhost:4000/prikazi';
-            
-            fetch(url, {
-              method: 'POST', // Koristimo POST metodu
-              headers: {
-                'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
-              },
-              body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
-            })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Network response was not ok');
-              }
-              return response.json();
-            })
-            .then(data => {
-              localStorage.setItem('prikaz', JSON.stringify(data));
-            })
-            .catch(error => console.log(error));
-            navigate('/home');}
+            if (!response.data.error) {
+                console.log(response.data);
+                callbackTrenutni(response.data);
+                const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
+                const url = 'http://localhost:4000/prikazi';
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ajdi: ajdi })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        localStorage.setItem('prikaz', JSON.stringify(data));
+                    })
+                    .catch(error => console.log(error));
+                navigate('/home');
+            }
         } catch (error) {
             console.error('Greška prilikom prijave:', error);
         }

@@ -36,8 +36,8 @@ function App() {
     if (sacuvaniKorisnik) {
       setTrenutnog(sacuvaniKorisnik);
     }
-   
-    
+
+
 
   }, []);
 
@@ -91,17 +91,12 @@ function App() {
         <Navbar flag={flag} izadji={izadji} />
         <Routes>
           <Route path='/home' exact element={<Home flag={flag} trenutniKorisnik={trenutniKorisnik} />} />
-          <Route path="/unos" element={<Unos dodaj={dodajDestinaciju}  />} />
+          <Route path="/unos" element={<Unos dodaj={dodajDestinaciju} />} />
           <Route path="/card" element={<Cards />} />
-
           <Route path="/products" element={<Prikaz destinacije={destinacije} obrisiDestinaciju={obrisiDestinaciju} setEditovane={callbackEdit} trenutniKorisnik={trenutniKorisnik} />} />
           <Route path="/sign-up" element={<Signup dodajK={dodajKorisnika} korisnici={korisnici} />} />
           <Route path="/" element={<Prijava korisnici={korisnici} callbackTrenutni={callbackTrenutni} />} />
           <Route path="/dest" element={<Destinacije rezervacija={callbackRez} flag={flag} />} />
-
-
-
-
         </Routes>
       </Router>
     </>

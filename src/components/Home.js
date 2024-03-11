@@ -3,10 +3,6 @@ import '../css/App.css';
 import HeroSection from './HeroSection';
 import Cards from './Cards';
 import Stories from './Stories';
-import Title from './Title';
-
-
-
 
 function Home({flag,trenutniKorisnik}) {
   return (

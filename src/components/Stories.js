@@ -1,29 +1,31 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import '../css/Stories.css';
 
 const Stories = () => {
-    const slider =useRef();
-    let x=0;
-    const slidaback =()=>{
-        if(x<0) {x+=25;}
-        slider.current.style.transform=`translateX(${x}%)`;
+    const slider = useRef();
+    let x = 0;
+    const slidaback = () => {
+        if (x < 0) { x += 24.7; }
+        slider.current.style.transform = `translateX(${x}%)`;
 
 
 
     };
-    const slideforw =()=>{
-        if(x>-50) {x-=25;}
-        slider.current.style.transform=`translateX(${x}%)`;
+    const slideforw = () => {
+        if (x > -50) { x -= 24.7; }
+        slider.current.style.transform = `translateX(${x}%)`;
 
     }
     return (
 
 
-        <div className="stories">
+        <div className="stories" name="story">
             <p className="sub">Our adventures</p>
             <h2>User stories</h2>
-            <img className="button" src="backbutton.png" onClick={slidaback}/>
-            <img className="nextbutton" src="next-button.png" onClick={slideforw}/>
+            <div className="button">
+                <img src="backbutton.png" onClick={slidaback} /></div>
+            <div className="nextbutton">
+                <img src="next-button.png" onClick={slideforw} /></div>
             <div className="slider">
                 <ul ref={slider}>
                     <li>
@@ -36,7 +38,7 @@ const Stories = () => {
                                 </div>
                             </div>
                             <p>
-                            kfrnegnerigegbelb
+                                kfrnegnerigegbelb
                                 ebnnbliebnbitnbpi
                                 kfrnegnerigegbelkfrnegnerigegbelb
                                 ebnnbliebnbitnbpi
@@ -75,7 +77,7 @@ const Stories = () => {
                                 </div>
                             </div>
                             <p>
-                            kfrnegnerigegbelb
+                                kfrnegnerigegbelb
                                 ebnnbliebnbitnbpi
                                 kfrnegnerigegbelkfrnegnerigegbelb
                                 ebnnbliebnbitnbpi
@@ -104,6 +106,7 @@ const Stories = () => {
                             </p>
                         </div>
                     </li>
+
                     <li>
                         <div className="slide">
                             <div className="user-info">
@@ -153,7 +156,7 @@ const Stories = () => {
                                 </div>
                             </div>
                             <p>
-                            kfrnegnerigegbelb
+                                kfrnegnerigegbelb
                                 ebnnbliebnbitnbpi
                                 kfrnegnerigegbelkfrnegnerigegbelb
                                 ebnnbliebnbitnbpi

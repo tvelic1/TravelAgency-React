@@ -10,17 +10,17 @@ function Unos({ dodaj,}) {
 
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Pretpostavljam da želite sprečiti podrazumevano ponašanje forme
+    e.preventDefault(); 
   
     const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
     const url = 'http://localhost:4000/prikazi';
     
     fetch(url, {
-      method: 'POST', // Koristimo POST metodu
+      method: 'POST', 
       headers: {
-        'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+        'Content-Type': 'application/json', 
       },
-      body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+      body: JSON.stringify({ ajdi: ajdi }) 
     })
     .then(response => {
       if (!response.ok) {
@@ -30,7 +30,7 @@ function Unos({ dodaj,}) {
     })
     .then(data => {
       localStorage.setItem('prikaz', JSON.stringify(data));
-      navigate('/products'); // Pretpostavka je da imate useNavigate hook za navigaciju
+      navigate('/products'); 
     })
     .catch(error => console.log(error));
   
