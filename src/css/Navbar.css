@@ -103,11 +103,12 @@
     transition: all 0.5s ease;
     z-index: 1;
     width: 100%;
+    display: flex; /* Dodano */
+    flex-direction: column; /* Dodano */
+    justify-content: space-evenly; /* Ovo ravnomjerno raspoređuje linkove */
     overflow-y: hidden;
-
   }
-
-
+  
   .nav-item,
   .nav-links {
     text-align: center;
@@ -115,8 +116,9 @@
     width: 100%;
     display: block;
     box-sizing: border-box;
+    flex: 1; /* Dodano - Osigurava da svaki element zauzme jednaki dio prostora */
   }
-
+  
   .nav-links:hover {
     background-color: purple;
     color: #242424;

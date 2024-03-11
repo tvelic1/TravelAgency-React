@@ -47,12 +47,13 @@ h2{  text-align: center;
     overflow-x: hidden;
     transition: 0.5s;
     box-sizing: border-box;
+    margin-left: -10px;
 
 
 }
 .slider ul li{
     list-style: none;
-    width: 40%;
+    width: 25%;
     padding: 20px;
     box-sizing: border-box;
 

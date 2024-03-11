@@ -48,9 +48,11 @@ function Navbar({ flag, izadji }) {
             <li className='nav-item'>
               <Link to='card' className='nav-links' smooth={true} offset={0} duration={500}>Avantura</Link>
             </li>
+            <li className='nav-item'>
             <RouterLink to='/dest' className='nav-links' onClick={closeMobileMenu}>
                 Destinacije
               </RouterLink>
+              </li>
             {flag && <li className='nav-item'>
               <RouterLink
                 to='/products'
