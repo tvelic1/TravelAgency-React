@@ -8,55 +8,14 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
   const [destinacijeData, setDestinacijeData] = useState([]);
   const [prikazData, setPrikazData] = useState([]);
 
-  const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
-  const url = 'http://localhost:4000/prikazi';
-
-  fetch(url, {
-    method: 'POST', // Koristimo POST metodu
-    headers: {
-      'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
-    },
-    body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      setPrikazData(data);
-      localStorage.setItem('prikaz', JSON.stringify(data)); // Pretpostavka je da imate useNavigate hook za navigaciju
-    })
-    .catch(error => console.log(error));
-
+  
   useEffect(() => {
-    // Dohvati podatke o destinacijama s backend servera
+    setPrikazData(JSON.parse(localStorage.getItem('prikaz')))
     fetch('http://localhost:4000/destinacije')
       .then(response => response.json())
       .then(data => setDestinacijeData(data))
       .catch(error => console.error('Error fetching destinations:', error));
 
-    /*   const ajdi = JSON.parse(localStorage.getItem('trenutni')).id;
-       const url = 'http://localhost:4000/prikazi';
-   
-       fetch(url, {
-         method: 'POST', // Koristimo POST metodu
-         headers: {
-           'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
-         },
-         body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
-       })
-         .then(response => {
-           if (!response.ok) {
-             throw new Error('Network response was not ok');
-           }
-           return response.json();
-         })
-         .then(data => {
-           localStorage.setItem('prikaz', JSON.stringify(data)); // Pretpostavka je da imate useNavigate hook za navigaciju
-         })
-         .catch(error => console.log(error));*/
   }, []);
 
   const handleEdit = (id) => {
@@ -78,7 +37,6 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
     let editedDestinationId = editedData[id]?.destinacija;
     console.log("Data ", editedData)
     if (!editedDestinationId) editedDestinationId = destinacijeData[0].id
-    // Izvrši ažuriranje u bazi bez obzira na promjenu destinacije
     fetch(`http://localhost:4000/rezervacija/${id}`, {
       method: 'PUT',
       headers: {
@@ -106,11 +64,11 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
         const url = 'http://localhost:4000/prikazi';
 
         fetch(url, {
-          method: 'POST', // Koristimo POST metodu
+          method: 'POST', 
           headers: {
-            'Content-Type': 'application/json', // Postavljamo Content-Type header na application/json
+            'Content-Type': 'application/json', 
           },
-          body: JSON.stringify({ ajdi: ajdi }) // Šaljemo 'ajdi' u telu zahteva kao JSON
+          body: JSON.stringify({ ajdi: ajdi }) 
         })
           .then(response => {
             if (!response.ok) {
@@ -119,7 +77,8 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
             return response.json();
           })
           .then(data => {
-            localStorage.setItem('prikaz', JSON.stringify(data)); // Pretpostavka je da imate useNavigate hook za navigaciju
+            setPrikazData(data);
+            localStorage.setItem('prikaz', JSON.stringify(data)); 
           })
           .catch(error => console.log(error));
       })
@@ -148,7 +107,7 @@ function Prikaz({ destinacije, obrisiDestinaciju, setEditovane, trenutniKorisnik
         </tr>
       </thead>
       <tbody>
-        {JSON.parse(localStorage.getItem('prikaz')).map((destinacija) => (
+        {prikazData.map((destinacija) => (
           <tr key={destinacija.id}>
             <td>
               {destinacija.ime}
