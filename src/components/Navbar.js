@@ -13,6 +13,10 @@ function Navbar({ flag, izadji }) {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const closeMenuAndSignOut=()=>{
+    setClick(false);
+    izadji();
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -65,11 +69,11 @@ function Navbar({ flag, izadji }) {
 
             <li>
               <RouterLink
-                to='/sign-in'
+                to='/'
                 className='nav-links-mobile'
-                onClick={closeMobileMenu}
+                onClick={closeMenuAndSignOut}
               >
-                Sign Out
+                {flag ? "SIGN OUT" : "SIGN IN"}
               </RouterLink>
             </li>
           </ul>
