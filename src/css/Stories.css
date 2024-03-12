@@ -55,7 +55,6 @@ h2{  text-align: center;
 .slider ul li{
     list-style: none;
     width: 25%;
-    
     padding: 20px;
     box-sizing: border-box;
     margin-right: 50px;
@@ -70,7 +69,7 @@ h2{  text-align: center;
     color: #676767;
     line-height: 1.4;
     background-color: rgb(159, 232, 232);
-    height: 320px;
+    height: 340px;
 
 }
 .slide img {
@@ -87,4 +86,52 @@ border: 4px solid #212EA0;
     margin-bottom: 20px;
     font-size: 25px;
     margin-left: 10px;
+}
+@media screen and (max-width:1600px) {
+    .slide{
+        height: 400px;
+    }
+    .stories{
+        height: 120vh;
+    }
+}
+@media screen and (max-width:1324px) {
+    .slide{
+        height: 500px;
+    }
+    .stories{
+        height: 130vh;
+    }
+}
+
+@media screen and (max-width:1155px) {
+    .slide{
+        height: 700px;
+    }
+    .stories{
+        height: 150vh;
+    }
+    .slide img{
+        width: 100px;
+    }
+
+    .user-info{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width:840px) {
+    .slide{
+        height: 1197px;
+    }
+    .stories{
+        height: 210vh;
+    }
+    .slide img{
+        width: 80px;
+    }
+    
+    .user-info{
+        font-size: 12px;
+    }
+    
 }
