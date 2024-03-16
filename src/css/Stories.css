@@ -92,7 +92,7 @@ border: 4px solid #212EA0;
         height: 400px;
     }
     .stories{
-        height: 120vh;
+        height: 130vh;
     }
 }
 @media screen and (max-width:1324px) {
@@ -100,7 +100,7 @@ border: 4px solid #212EA0;
         height: 500px;
     }
     .stories{
-        height: 130vh;
+        height: 140vh;
     }
 }
 
@@ -109,7 +109,7 @@ border: 4px solid #212EA0;
         height: 700px;
     }
     .stories{
-        height: 150vh;
+        height: 170vh;
     }
     .slide img{
         width: 100px;
@@ -121,10 +121,10 @@ border: 4px solid #212EA0;
 }
 @media screen and (max-width:840px) {
     .slide{
-        height: 1197px;
+        height: 1370px;
     }
     .stories{
-        height: 210vh;
+        height: 250vh;
     }
     .slide img{
         width: 80px;
