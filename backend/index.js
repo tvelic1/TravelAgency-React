@@ -6,10 +6,10 @@ const cors=require('cors')
 const session = require('express-session');
 
 app.use(session({
-  secret: 'tajna', // Tajni ključ za potpisivanje ID-a sesije, promijenite u stvarnu tajnu
+  secret: 'tajna', // Tajni ključ za potpisivanje ID-a 
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Postavite na true ako služite stranice preko HTTPS
+  cookie: { secure: false } 
 }));
 
 app.use(bp.urlencoded({extended: false}));
@@ -31,10 +31,11 @@ db.connect((err) => {
 app.get('/destinacije', (req, res) => {
     db.query("SELECT * FROM destinacija", (err, result) => {
         if (err) {
-            // Ako dođe do greške, šaljemo status 500 (Internal Server Error) i poruku o grešci
+            
+          
             return res.status(500).send(err);
         }
-        // Ako nema greške, šaljemo dobijene podatke koristeći res.json()
+        
         res.json(result);
     });
 });
